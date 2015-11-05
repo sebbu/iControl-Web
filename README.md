@@ -4,13 +4,13 @@ This github project is a manual for the "iControl Web" iOS app. The app is avail
 
 #### version 1.5 and higher
 
-The app iControl Web can be used for any home automation system which supports http. The app can also be used to use ITFFF from Apple watch. You can call any URL with an appropriate sized button on any of your devices (iPhone, iPad or Apple Watch). The screens can be configured according to your needs using a json file via iTunes file sharing.
+The app iControl Web can be used for any home automation system which supports http. The app can also be used to use IFTTT from Apple watch. You can call any URL with an appropriate sized button on any of your devices (iPhone, iPad or Apple Watch). The screens can be configured according to your needs using a json file via iTunes file sharing.
 
 ---
 
 ## Donations
 
-I am an individual developer of the app iControl Web. My intention for it was my own need of a non-ugly app where I can send http requests for my RaspBerry Pi Home Automation System (I have also implemented a simple server for [Raspberry PI GPIO Web Control Interface](https://bitbucket.org/sbub/raspberry-pi-gpio-web-control)). Over the years I have added more features by user requests. I really appreciate donations for the app.
+I am an individual developer of the app iControl Web. My intention for it was my own need of a non-ugly app where I can send http requests for my RaspBerry Pi home automation system (I have also implemented a simple server for [Raspberry PI GPIO Web Control Interface](https://bitbucket.org/sbub/raspberry-pi-gpio-web-control)). Over the years I have added more features by user requests. I really appreciate donations for the app.
 
 
 The app is ad free and tracker free as I would not trust any app which has control about my home. 
@@ -41,9 +41,13 @@ I know that it is really a bit of a hassle, but I think it is much easier to fid
 * Copy the file to the name gui.json.
 * Edit the file gui.json with a JSON editor to avoid syntax errors. There are plenty in the Mac App Store or available online.
 * After you have changed the file to your needs, drag and drop it back (named **gui.json**) to the iTunes file sharing folder in iTunes.
-* Kill the app using the app switcher and start it again. You will see the configuration on your iPhone or iPad.
-* The configuration is transferred automatically to the Apple watch. The iPhone app will show an info alert about the successful transfer.
-* If you do not see an info alert, you can swipe to the right most screen. It is an info screen where you can force the transfer of the watch configuration  again.
+* Kill the iPhone app using the app switcher and start it again. You will see the configuration on your iPhone or iPad.
+* The configuration should be transferred automatically to the Apple watch.
+    * The iPhone shows an alert that will transfer the configuration to the watch.
+    * Enable the watch screen once to start the transfer.
+    * The iPhone app will show an info alert about the successful transfer.
+* If you do not see an info that the transfer will start, you can swipe to the right most screen. It is an info screen where you can force the transfer of the watch configuration again.
+* If you still do not see an iinfo that the transfer will start, make sure that the app is installed on your watch and that the watch is linked. Open the iControl watch app and stop it and start it again.
 
 # JSON Configuration in Detail
 
@@ -206,7 +210,7 @@ On every page and subpage, it is possible to define up to four context menu item
 
 A context menu entry must have a label, a command and an icon. The names of the icons are predefined by Apple as [WKMenuItemIcon](https://developer.apple.com/library/ios/documentation/WatchKit/Reference/WKInterfaceController_class/#//apple_ref/c/tdef/WKMenuItemIcon). Simply use the short strings (i.e. Accept, Play, Pause, More, ...).
 
-You must specify at most one context menu part for a each page. Here is an example with 3 buttons:
+You must specify at most one context menu part for a each page. Here is an example with 2 buttons:
 
     {
       "contextMenuLabel1": "All Off",
@@ -222,7 +226,7 @@ You must specify at most one context menu part for a each page. Here is an examp
 
 ## Interaction with other Apps
 
-For an iPhone/iPad app it is possible to provide a custom URL scheme. This URL can be used for interactions between apps. The URLs look like normal URLs, i.e. to see your twitter timeline use the following URL: [twitter://timeline](twitter://timeline). There even exists list of iPhone URL schemes on the internet. You can search for them to see which of your installed Apps support a custom URL scheme and can be integrated to iControl Web. The only usecase (I can currently think of) is another home automation  app where you want a shortcut to it.
+For an iPhone/iPad app it is possible to provide a custom URL scheme. This URL can be used for interactions between apps. The URLs look like normal URLs, i.e. to see your twitter timeline use the following URL: `twitter://timeline`. There even exists list of iPhone URL schemes on the internet. You can search for them to see which of your installed Apps support a custom URL scheme and can be integrated to iControl Web. The only usecase (I can currently think of) is another home automation  app where you want a shortcut to it.
 
 The iControl Web app currently supports a custom URL scheme to give external access to a button. You only have to specify an id for the button. The id must be unique for all buttons on all pages!
 
@@ -234,5 +238,5 @@ The iControl Web app currently supports a custom URL scheme to give external acc
       "cmd1Id": "uniqueCmdId1L",
     }
 
-To reference this button from another app (i.e. Workflow), simply use the following link: [iControl://execute?uniqueCmdId1L](iControl://execute?uniqueCmdId1L)
+To reference this button from another app (i.e. Workflow), simply use the following link: `iControl://execute?uniqueCmdId1L`
 
