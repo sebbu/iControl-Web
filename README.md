@@ -2,7 +2,7 @@
 
 This github project is a manual for the "iControl Web" iOS app. The app is available for download at the Apple App Store: [https://itunes.apple.com/us/app/icontrol-web/id580659303?mt=8#](https://itunes.apple.com/us/app/icontrol-web/id580659303?mt=8# "iControl Web").
 
-#### Version 1.5 and higher
+#### Version 1.6 and higher
 
 The app iControl Web can be used for any home automation system which supports http. The app can also be used to use IFTTT from Apple watch. You can call any URL with an appropriate sized button on any of your devices (iPhone, iPad or Apple Watch). The screens can be configured according to your needs using a json file via iTunes file sharing.
 
@@ -10,13 +10,13 @@ The app iControl Web can be used for any home automation system which supports h
 
 ## Donations
 
-I am an individual developer of the app iControl Web. My intention for it was my own need of a non-ugly app where I can send http requests for my RaspBerry Pi home automation system (I have also implemented a simple server for [Raspberry PI GPIO Web Control Interface](https://bitbucket.org/sbub/raspberry-pi-gpio-web-control)). Over the years I have added more features by user requests. I really appreciate donations for the app.
+I am an individual developer of the app iControl Web. My intention for the app was my own need of a non-ugly app where I can send http requests to my RaspBerry Pi home automation system (I have also implemented a simple server [Raspberry PI GPIO Web Control Interface](https://bitbucket.org/sbub/raspberry-pi-gpio-web-control)). Over the years I have added more features by user requests. I really appreciate donations for the app.
 
 
-The app is ad free and tracker free as I would not trust any app which has control about my home. 
+The app is ad free and tracker free as I would not trust any app which has control of my home that integrates these things.
 
 
-### Currently you can use Paypal for Donations: [https://www.paypal.me/sebastianbub/3](https://www.paypal.me/sebastianbub/3)
+#### Currently the most simple whay to support me is via [Paypal](https://www.paypal.me/sebastianbub/3)
 
 
 Thank you so much for your support of my development and motivation. It is really great to know that other people all over the world find this app useful too.
@@ -60,6 +60,7 @@ The following example shows the general structure of the JSON file. It consists 
 1. `"pages"` is for the **iPhone/iPad** configuration. Screens are reachable by swiping horizontally. The last screen is an info screen. 
 	* The info screen can be hidden by settings `"showInfoScreen": false`. This should only be done after you have done all other configuration and when you are sure that everything is working. 
 	* You can disable network response feedback in two ways: use the switch on the info screen to hide error alerts. Set `"coloredNetworkFeedback": false` to not see flashing green/red button color. This is useful if your server does not respond correctly on network requests.
+	* If your device supports 3D Touch, you can configure `"3D_Touch"` with up to four commands.
 	* You can configure the `pages` in an array:
     	* Each page has a `"pageLabel"` which is optional.
 		* You can specify a request `"timeout"` (in seconds). The default value is 2.0 seconds.
@@ -69,7 +70,7 @@ The following example shows the general structure of the JSON file. It consists 
 2. `"pagesWatch"` is for the **Apple watch**. Screens are reachable via table drill down (as it is commonly used in other apps, i.e. in Apple settings app).
 	* The screen has a `"pageLabel"` which is displayed in the first line.
 	* On the watch you can only specify one request `"timeout"` for all controls.
-	* You can configure if you want haptic feedback whenever you press a button with the flag `"hapticNetworkResponseFeedback"`.
+	* You can configure if you want haptic (and sound) feedback whenever you press a button with the flag `"hapticNetworkResponseFeedback"`.
 	* If you want to use the glance for iControl Web, you may specify a request which can be more seen as a sensor with `"glanceTextUrl"`.
 	* If the (glance) sensor request fails, the `"glanceErrorText"` is displayed. If you want to use the glance, but you do **not** have an appropriate sensor, simply write something *wrong* to `"glanceTextUrl"`, i.e. "glanceTextUrl": "xxxhttp://www.irtp.de/test.txt". No network request is send out and the `"glanceErrorText"` is displayed directly. The glance can still be used as a shortcut to open the app.
 	* Although the `"controls"` object is an array, there is only one screen on the watch (and the array must consist of one object), but a page can have subpages (see below).
@@ -79,7 +80,8 @@ General Structure of the JSON file:
     
     {
       "showInfoScreen": true,
-      "coloredNetworkFeedback": true
+      "coloredNetworkFeedback": true,
+      "3D_Touch": {        "contextMenuLabel1": "All Off",        "contextMenuIcon1": "Prohibit",        "contextMenuCmd1": "http://cmd1ContextAllOff",      },
       "pages": [
         {
           "pageLabel": "General",
@@ -215,7 +217,7 @@ You must specify at most one context menu part for a each page. Here is an examp
 
 ## Interaction with other Apps
 
-For an iPhone/iPad app it is possible to provide a custom URL scheme. This URL can be used for interactions between apps. The URLs look like normal URLs, i.e. to see your twitter timeline use the following URL: `twitter://timeline`. There even exists list of iPhone URL schemes on the internet. You can search for them to see which of your installed Apps support a custom URL scheme and can be integrated to iControl Web. The only usecase (I can currently think of) is another home automation  app where you want a shortcut to it.
+For an iPhone/iPad app it is possible to provide a custom URL scheme. This URL can be used for interactions between apps. The URLs look like normal URLs, i.e. to see your twitter timeline use the following URL: `twitter://timeline`. There even exists list of iPhone URL schemes on the internet. You can search for them to see which of your installed Apps support a custom URL scheme and can be integrated to iControl Web.
 
 The iControl Web app currently supports a custom URL scheme to give external access to a button. You only have to specify an id for the button (on the iPhone). The id must be unique for all buttons on all pages!
 
@@ -229,7 +231,9 @@ The iControl Web app currently supports a custom URL scheme to give external acc
 
 To reference this button from another app (i.e. Workflow), simply use the following link: 
 
-`iControl://execute?uniqueCmdId1L`.
+`icontrol://execute?uniqueCmdId1L`.
 
-Apple has restricted the usage of custom URL schemes with iOS9. If you have the need to call another app from iControl Web, please write me an email. I have to whitelist earch URL scheme. If you want to call iControl Web from another app, talk to the developer to whitelist this app.
+Apple has restricted the usage of custom URL schemes with iOS9 (especially the [testing](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/index.html#//apple_ref/occ/instm/UIApplication/canOpenURL:)). iControl Web does not test if the other app exists and if it can handle the url scheme. This way I do not have to whitelist earch URL scheme and the app should work with any custom url scheme.
+
+If you want to call iControl Web from another app, you probably have to talk to the developer to whitelist this app.
 
