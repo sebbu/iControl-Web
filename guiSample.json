@@ -1,0 +1,249 @@
+{
+  "_manual": "PLEASE VISIT https://github.com/sebbu/iControl-Web FOR A DETAILED CONFIGURATION MANUAL.",
+  "showInfoScreen": true,
+  "_comment1": "info screen can be hidden, but watch out that you do not reach the switch 'show/hide error alerts' anymore and can not force a watch configuration transfer",
+  "coloredNetworkFeedback": true,
+  "_comment2": "button background is animated (green/red) to give feedback about network call (success/failure). you may hide this completely",
+  "_comment3": "YOU NEED TO FORCE A START OF THE APP ON YOUR IPHONE AFTER CONFIG CHANGES",
+  "3D_Touch": {
+    "_comment5a": "When 3D Touch is available: You can define contextMenuItems (currently 4) (icon names as defined for UIApplicationShortcutIconType: https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType )",
+    "contextMenuLabel1": "All Off",
+    "contextMenuIcon1": "Prohibit",
+    "contextMenuCmd1": "http://cmd1ContextAllOff",
+    "contextMenuLabel2": "All On",
+    "contextMenuIcon2": "Home",
+    "contextMenuCmd2": "http://cmd2ContextAllOn",
+    "contextMenuLabel3": "☎️ More",
+    "contextMenuIcon3": "Contact",
+    "contextMenuCmd3": "http://cmd3ContextMore",
+    "contextMenuLabel4": "Maybe",
+    "contextMenuIcon4": "Favorite",
+    "contextMenuCmd4": "http://cmd4ContextMaybe"
+  },
+  "pages": [
+    {
+      "pageLabel": "General",
+      "timeout": 2,
+      "compactHeight": false,
+      "_comment4": "iPhone: For each page you can set a request timeout (in seconds) and specify if you want a more compact view",
+      "controls": [
+        {
+          "_comment5": "There are 5 sizeTypes namely small, medium, large, verySmall and smallVertical. Corresponding buttons and commands must exist.",
+          "button1": "Open or Close",
+          "cmd1": "http://cmd1L",
+          "cmd1Id": "uniqueCmdId1L",
+          "_comment6": "You may specify a unique id for a command. This way it is callable from other apps, i.e. icontrol://execute?uniqueCmdId1L - if you do not want that, remove its corresponding key",
+          "headline1": "Garage 🚗",
+          "sizeType": "large"
+        },
+        {
+          "button1": "on 💡",
+          "button2": "off 🌙",
+          "cmd1": "http://cmd1M",
+          "cmd1Id": "uniqueCmdId1M",
+          "cmd2": "http://cmd2M",
+          "cmd2Id": "uniqueCmdId2M",
+          "headline1": "Light",
+          "sizeType": "medium"
+        },
+        {
+          "button1": "on",
+          "button2": "off",
+          "button3": "on",
+          "button4": "off",
+          "cmd1": "http://cmd1S",
+          "cmd1Id": "uniqueCmdId1S",
+          "cmd2": "http://cmd2S",
+          "cmd2Id": "uniqueCmdId2S",
+          "cmd3": "http://cmd3S",
+          "cmd3Id": "uniqueCmdId3S",
+          "cmd4": "http://cmd4S",
+          "cmd4Id": "uniqueCmdId4S",
+          "headline1": "Indoor Light",
+          "headline2": "Outdoor Light",
+          "sizeType": "small"
+        }
+      ]
+    },
+    {
+      "pageLabel": "TV",
+      "timeout": 2,
+      "compactHeight": false,
+      "controls": [
+        {
+          "_comment7": "This is a second screen (scroll horizontally). For the small button exists a vertical version",
+          "button1": "+",
+          "button2": "-",
+          "button3": "up",
+          "button4": "down",
+          "cmd1": "http://count.irtp.de?action=add",
+          "cmd1Id": "uniqueCmdId1Sv",
+          "cmd2": "http://count.irtp.de?action=subtract",
+          "cmd2Id": "uniqueCmdId2Sv",
+          "cmd3": "http://cmd3Sv",
+          "cmd3Id": "uniqueCmdId3Sv",
+          "cmd4": "http://cmd4Sv",
+          "cmd4Id": "uniqueCmdId4Sv",
+          "headline1": "Volume",
+          "headline2": "Program",
+          "sizeType": "smallVertical"
+        },
+        {
+          "button1": "0",
+          "button2": "20",
+          "button3": "40",
+          "button4": "60",
+          "button5": "80",
+          "button6": "100",
+          "cmd1": "http://cmd1vS",
+          "cmd1Id": "uniqueCmdId1vS",
+          "cmd2": "http://cmd2vS",
+          "cmd2Id": "uniqueCmdId2vS",
+          "cmd3": "http://cmd3vS",
+          "cmd3Id": "uniqueCmdId3vS",
+          "cmd4": "http://cmd4vS",
+          "cmd4Id": "uniqueCmdId4vS",
+          "cmd5": "http://cmd5vS",
+          "cmd5Id": "uniqueCmdId5vS",
+          "cmd6": "http://cmd6vS",
+          "cmd6Id": "uniqueCmdId6vS",
+          "headline1": "Dimmer",
+          "sizeType": "verySmall"
+        }
+      ]
+    }
+  ],
+  "pagesWatch": [
+    {
+      "_commentW1": "pagesWatch is for Apple Watch configuration. Pages are hierarchically on the watch",
+      "_commentW2": "There are 2 button sizeTypes namely medium and large, a label and a sub page. Corresponding buttons and commands must exist.",
+      "_commentW3": "Large buttons, labels and sub pages can have colored dots: yellow, orange, purple, green, cyan, blue, clear, none",
+      "_commentW4": "YOU NEED TO START THE APP ON YOUR IPHONE AFTER CONFIG CHANGES IN ORDER TO SEE INTERFACE CHANGES ON APPLE WATCH!",
+      "_commentW4a": "YOU NEED TO TRANSFER A NEW CONFIG FILE (AGAIN) TO YOUR PHONE IN CASE YOU SWITCH THE WATCH OR THE PHONE",
+      "timeout": 2,
+      "hapticNetworkResponseFeedback": true,
+      "_commentW5": "For a glance in case of an error, the following text is shown. Use empty String to display nothing.",
+      "glanceTextUrl": "http://www.irtp.de/test.txt",
+      "glanceErrorText": "Status not available",
+      "pageLabel": "iControl",
+      "controls": [
+        {
+          "_commentW5": "For each page (or subPage) you can define up to 4 contextMenuItems (icon names as defined for WKMenuItemIcon: https://developer.apple.com/library/ios/documentation/WatchKit/Reference/WKInterfaceController_class/#//apple_ref/c/tdef/WKMenuItemIcon )",
+          "contextMenuLabel1": "All Off",
+          "contextMenuIcon1": "Decline",
+          "contextMenuCmd1": "http://cmd1MContextAllOff",
+          "contextMenuLabel2": "All On",
+          "contextMenuIcon2": "Accept",
+          "contextMenuCmd2": "http://cmd2MContextAllOn",
+          "contextMenuLabel3": "☎️ More",
+          "contextMenuIcon3": "More",
+          "contextMenuCmd3": "http://cmd3MContextMore",
+          "contextMenuLabel4": "Maybe",
+          "contextMenuIcon4": "Maybe",
+          "contextMenuCmd4": "http://cmd4MContextMaybe"
+        },
+        {
+          "label": "All Lights",
+          "color": "yellow"
+        },
+        {
+          "button1": "on 💡",
+          "button2": "off ️🌙",
+          "cmd1": "http://cmd1Mon",
+          "cmd2": "http://cmd2Moff",
+          "sizeType": "medium"
+        },
+        {
+          "button1": "Garage Door",
+          "cmd1": "http://cmd1LgarageDoor",
+          "sizeType": "large",
+          "color": "orange"
+        },
+        {
+          "_commentW8": "A sub page is reached via table drilldown. It can consist of all buttons and labels and sub pages.",
+          "subPageLabel": "Garage",
+          "color": "purple",
+          "controls": [
+            {
+              "contextMenuLabel1": "Garage",
+              "contextMenuIcon1": "More",
+              "contextMenuCmd1": "http://cmd1MContextGarage"
+            },
+            {
+              "label": "More Controls"
+            },
+            {
+              "button1": "Garage Door",
+              "cmd1": "http://cmd1LgarageDoor",
+              "sizeType": "large"
+            },
+            {
+              "subPageLabel": "Other  ",
+              "color": "green",
+              "controls": [
+                {
+                  "button1": "on",
+                  "button2": "off",
+                  "cmd1": "http://cmd1Mon",
+                  "cmd2": "http://cmd2Moff",
+                  "sizeType": "medium"
+                },
+                {
+                  "button1": "-",
+                  "button2": "+",
+                  "cmd1": "http://cmd1Mon",
+                  "cmd2": "http://cmd2Moff",
+                  "sizeType": "medium"
+                },
+                {
+                  "button1": "up",
+                  "button2": "down",
+                  "cmd1": "http://cmd1Mon",
+                  "cmd2": "http://cmd2Moff",
+                  "sizeType": "medium"
+                },
+                {
+                  "button1": "left",
+                  "button2": "right",
+                  "cmd1": "http://cmd1Mon",
+                  "cmd2": "http://cmd2Moff",
+                  "sizeType": "medium"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "button1": "sample clear",
+          "cmd1": "http://cmd2L",
+          "sizeType": "large",
+          "color": "clear"
+        },
+        {
+          "button1": "sample none",
+          "cmd1": "http://cmd3L",
+          "sizeType": "large",
+          "color": "none"
+        },
+        {
+          "button1": "sample green",
+          "cmd1": "http://cmd5L",
+          "sizeType": "large",
+          "color": "green"
+        },
+        {
+          "button1": "sample cyan",
+          "cmd1": "http://cmd6L",
+          "sizeType": "large",
+          "color": "cyan"
+        },
+        {
+          "button1": "sample blue",
+          "cmd1": "http://cmd7L",
+          "sizeType": "large",
+          "color": "blue"
+        }
+      ]
+    }
+  ]
+}

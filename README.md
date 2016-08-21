@@ -1,8 +1,6 @@
-# iControl-Web Manual Pages
+# iControl-Web Manual Pages (Version 1.7)
 
 This github project is a manual for the "iControl Web" iOS app. The app is available for download at the Apple App Store: [https://itunes.apple.com/us/app/icontrol-web/id580659303?mt=8#](https://itunes.apple.com/us/app/icontrol-web/id580659303?mt=8# "iControl Web").
-
-#### Version 1.6 and higher
 
 The app iControl Web can be used for any home automation system which supports http. The app can also be used to use IFTTT from Apple watch. You can call any URL with an appropriate sized button on any of your devices (iPhone, iPad or Apple Watch). The screens can be configured according to your needs using a json file via iTunes file sharing.
 
@@ -10,25 +8,30 @@ The app iControl Web can be used for any home automation system which supports h
 
 ## Donations
 
-I am an individual developer of the app iControl Web. My intention for the app was my own need of a non-ugly app where I can send http requests to my RaspBerry Pi home automation system (I have also implemented a simple server [Raspberry PI GPIO Web Control Interface](https://bitbucket.org/sbub/raspberry-pi-gpio-web-control)). Over the years I have added more features by user requests. I really appreciate donations for the app.
+I am an individual developer of the app iControl Web. My intention for the app was my own need of a non-ugly app where I can send http requests to my Raspberry Pi home automation system (I have also implemented a flexible server [Raspberry PI GPIO Web Control Interface](https://bitbucket.org/sbub/raspberry-pi-gpio-web-control)). Over the years I have added more features by user requests. I really appreciate donations for the app.
 
 
 The app is ad free and tracker free as I would not trust any app which has control of my home that integrates these things.
 
 
-#### Currently the most simple whay to support me is via [Paypal](https://www.paypal.me/sebastianbub/3)
+#### Currently the most simple whay to support me is via [Paypal](https://www.paypal.me/sebastianbub/2)
 
 
 Thank you so much for your support of my development and motivation. It is really great to know that other people all over the world find this app useful too.
 
 ---
 
+# Configuration
 
-# iTunes File Sharing
+In order to configure the app you need to create a configuration JSON file. You can always download a full  example for a starting point using iTunes file sharing or in this repository as [guiSample.json](guiSample.json).
 
-In order to configure the app you need to create a configuration JSON file. You can always donwnload a full  example for a starting point using iTunes file sharing.
+## JSON File via Email or any File based Cloud App
 
-#### Why iTunes file sharing?
+In order to configure the app you can send a configuration JSON file via email attachement and open it on the iPhone. It must have the file ending .json! You have to use the open dialog and choose iControl Web to open it and then follow the instructions **Install New Configuration**. You can also use any other (file based cloud) app, i.e. iCloud, Dropbox, to send/export the file iControl Web. A copy of the previous config is saved under gui.json.[date]. These files can only be accessed via iTunes file sharing.
+
+
+## iTunes File Sharing
+
 
 I know that it is really a bit of a hassle, but I think it is much easier to fiddle about these cryptic home automation URLs on a computer with a real keyboard instead of an iPhone keyboard. Tool support (JSON editors) is great and you probably do not change your configuration every day. If you can think of any other good possibility to create the UI including the URLs, please let me know.
 
@@ -41,13 +44,20 @@ I know that it is really a bit of a hassle, but I think it is much easier to fid
 * Copy the file guiSample.json to the name gui.json.
 * Edit the file gui.json with a JSON editor to avoid syntax errors. There are plenty in the Mac App Store or available online.
 * After you have changed the file to your needs, drag and drop it back (named **gui.json**) to the iTunes file sharing folder in iTunes.
+
+# Install New Configuration
+
+After you have copied a new version of gui.json to your device, please follow these instructions:
+
 * Kill the iPhone app using the app switcher and start it again. You will see the configuration on your iPhone or iPad.
 * The configuration should be transferred automatically to the Apple watch.
     * The iPhone shows an alert that it will transfer the configuration to the watch.
     * Enable the watch screen once to finish the transfer.
-    * The iPhone app will show an info alert about the successful transfer.
-* If you do not see an info that the transfer did start, you can swipe to the right most screen. It is an info screen where you can force the transfer of the watch configuration again.
+    * The iPhone app will show an info alert about the successful transfer (alerts might be messed up a little).
+* If you do not see an info that the transfer did start, you can swipe to the right most screen. It is an info screen where you can force the transfer of the watch configuration again (if you do not see the info screen on your iPhone you have to enable it with `"showInfoScreen": true`).
 * If you still do not see an info that the transfer will start, make sure that the app is installed on your watch and that the watch is linked. Open the iControl watch app and stop it and start it again.
+* In rare case this is a little bit of a hassle and might need a restart of both devices and/or a new install.
+
 
 # JSON Configuration in Detail
 
