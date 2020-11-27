@@ -6,18 +6,9 @@ The app iControl Web can be used for any home automation system which supports h
 
 ---
 
-## Donations
+## Motivation
 
-I am an individual developer of the app iControl Web. My intention for the app was my own need of a non-ugly app where I can send http requests to my Raspberry Pi home automation system (I have also implemented a flexible server [Raspberry PI GPIO Web Control Interface](https://bitbucket.org/sbub/raspberry-pi-gpio-web-control)). Over the years I have added more features by user requests. I really appreciate donations for the app.
-
-
-The app is ad free and tracker free as I would not trust any app which has control of my home that integrates these things.
-
-
-#### Currently the most simple whay to support me is via [Paypal](https://www.paypal.me/sebastianbub/2)
-
-
-Thank you so much for your support of my development and motivation. It is really great to know that other people all over the world find this app useful too.
+I am an individual developer of the app iControl Web. My intention for the app was my own need of a non-ugly app where I can send http requests to my Raspberry Pi home automation system (I have also implemented a flexible server [Raspberry PI GPIO Web Control Interface](https://bitbucket.org/sbub/raspberry-pi-gpio-web-control)). Over the years I have added more features by user requests. The app is ad free and tracker free as I would not trust any app which has control of my home that integrates these things.
 
 ---
 
@@ -30,7 +21,7 @@ In order to configure the app you need to create a configuration JSON file. You 
 In order to configure the app you can send a configuration JSON file via email attachement and open it on the iPhone. It must have the file ending .json! You have to use the open dialog and choose iControl Web to open it and then follow the instructions **Install New Configuration**. You can also use any other (file based cloud) app, i.e. iCloud, Dropbox, to send/export the file iControl Web. A copy of the previous config is saved under gui.json.[date]. These files can only be accessed via iTunes file sharing.
 
 
-## iTunes File Sharing
+## iTunes File Sharing (it has moved to the Finder)
 
 
 I know that it is really a bit of a hassle, but I think it is much easier to fiddle about these cryptic home automation URLs on a computer with a real keyboard instead of an iPhone keyboard. Tool support (JSON editors) is great and you probably do not change your configuration every day. If you can think of any other good possibility to create the UI including the URLs, please let me know.
@@ -83,7 +74,7 @@ The following example shows the general structure of the JSON file. It consists 
 	* You can configure if you want haptic (and sound) feedback whenever you press a button with the flag `"hapticNetworkResponseFeedback"`.
 	* If you want to use the glance for iControl Web, you may specify a request which can be more seen as a sensor with `"glanceTextUrl"`.
 	* If the (glance) sensor request fails, the `"glanceErrorText"` is displayed. If you want to use the glance, but you do **not** have an appropriate sensor, simply write something *wrong* to `"glanceTextUrl"`, i.e. "glanceTextUrl": "xxxhttp://www.irtp.de/test.txt". No network request is send out and the `"glanceErrorText"` is displayed directly. The glance can still be used as a shortcut to open the app.
-	* Although the `"controls"` object is an array, there is only one screen on the watch (and the array must consist of one object), but a page can have subpages (see below).
+	* Although the `"pagesWatch"` object is an array, there is only one screen on the watch (and the array must consist of one object), but a page can have subpages (see below).
 
 
 General Structure of the JSON file:
@@ -91,7 +82,11 @@ General Structure of the JSON file:
     {
       "showInfoScreen": true,
       "coloredNetworkFeedback": true,
-      "3D_Touch": {        "contextMenuLabel1": "All Off",        "contextMenuIcon1": "Prohibit",        "contextMenuCmd1": "http://cmd1ContextAllOff",      },
+      "3D_Touch": {
+        "contextMenuLabel1": "All Off",
+        "contextMenuIcon1": "Prohibit",
+        "contextMenuCmd1": "http://cmd1ContextAllOff",
+      },
       "pages": [
         {
           "pageLabel": "General",
@@ -209,7 +204,7 @@ On every page and subpage, it is possible to define up to four context menu item
 * scene controls which have a meaning for all controls (i.e. turn all lights off for this room)
 
 
-A context menu entry must have a label, a command and an icon. The names of the icons are predefined by Apple as [WKMenuItemIcon](https://developer.apple.com/library/ios/documentation/WatchKit/Reference/WKInterfaceController_class/#//apple_ref/c/tdef/WKMenuItemIcon). Simply use the short strings (i.e. Accept, Play, Pause, More, ...).
+A context menu entry must have a label, a command and an icon. The names of the icons are predefined by Apple as [WKMenuItemIcon](https://developer.apple.com/documentation/watchkit/wkmenuitemicon). Simply use the short strings (i.e. Accept, Play, Pause, More, ...).
 
 You must specify at most one context menu part for a each page. Here is an example with 2 buttons:
 
